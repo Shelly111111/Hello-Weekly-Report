@@ -19,8 +19,8 @@ public class LoginController {
     /**
      * 登录逻辑的实现
      *
-     * @param username
-     * @param password
+     * @param username String
+     * @param password String
      * @return
      */
     @PostMapping("/login")
