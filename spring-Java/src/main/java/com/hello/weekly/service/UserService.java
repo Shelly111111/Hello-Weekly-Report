@@ -7,7 +7,7 @@ public interface UserService {
 
     /**
      * 插入一条信息到数据库中
-     * @param user
+     * @param user com.hello.weekly.pojo.User
      * @return
      */
     Integer insertUser(User user);
@@ -15,7 +15,7 @@ public interface UserService {
 
     /**
      * 通过用户名进行查询对应的用户
-     * @param username
+     * @param username String
      * @return
      */
     User findByUsername(String username);

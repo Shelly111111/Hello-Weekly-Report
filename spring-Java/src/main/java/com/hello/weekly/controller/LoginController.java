@@ -17,11 +17,14 @@ public class LoginController {
     private UserService userService;
 
     /**
-     * 登录逻辑的实现
+     * @discription: 登录逻辑的实现
      *
      * @param username String
      * @param password String
      * @return
+     *
+     * @author: Zhang
+     * @date: 2023/4/13
      */
     @PostMapping("/login")
     public ResponseData login(@RequestParam(value = "username") String username,
@@ -33,17 +36,15 @@ public class LoginController {
 
         // 用户名不存在
         if (user == null) {
-            map.put("userMsg", "该用户不存在！");
-            return new ResponseData(-1, "登陆失败！", map);
+            return new ResponseData(ResponseData.notFound, "该用户不存在！");
         }
 
         // 用户输入的密码错误
         if (!user.getPassword().equals(password)) {
-            map.put("passwordMsg", "你所输入的密码错误！");
-            return new ResponseData(-2, "登陆失败！", map);
+            return new ResponseData(ResponseData.error, "你所输入的密码错误！");
         }
 
         // 登录成功
-        return new ResponseData(200, "登陆成功！");
+        return new ResponseData(ResponseData.success, "登陆成功！");
     }
 }
