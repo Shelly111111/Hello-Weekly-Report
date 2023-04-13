@@ -5,11 +5,9 @@ import lombok.*;
 /**
  * 对应于数据库中的 User 表
  */
-@NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @Setter
-@ToString
+@Getter
 public class User {
 
     private Integer id;

@@ -2,7 +2,7 @@ package com.hello.weekly;
 
 import com.hello.weekly.pojo.User;
 import com.hello.weekly.service.UserService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 

@@ -6,6 +6,9 @@ import com.hello.weekly.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -14,22 +17,24 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 插入信息到数据库中
-     * @param user
+     * @param user  com.hello.weekly.pojo.User
      * @return
      */
     @Override
     public Integer insertUser(User user) {
-        return userMapper.insertUser(user);
+        return userMapper.insert(user);
     }
 
     /**
      * 通过用户名进行相关用户的查询
-     * @param username
-     * @return
+     * @param username String
+     * @return com.hello.weekly.pojo.User
      */
     @Override
     public User findByUsername(String username) {
-        return userMapper.findByUsername(username);
+        Map<String,Object> map = new HashMap<>();
+        map.put("username",username);
+        return userMapper.selectByMap(map).get(0);
     }
 
 }

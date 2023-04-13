@@ -1,20 +1,18 @@
 package com.hello.weekly.Res;
 
+import lombok.*;
+
+@AllArgsConstructor
+@Setter
+@Getter
 public class ResponseData {
 
     //状态码
-    public Integer code;
+    private Integer code;
     //消息
-    public String message;
+    private String message;
     //数据
-    public Object data;
-
-
-    public ResponseData(Integer code, String msg, Object data) {
-        this.code = code;
-        this.message = msg;
-        this.data = data;
-    }
+    private Object data;
 
     public ResponseData(Integer code, String msg) {
         this.code = code;
