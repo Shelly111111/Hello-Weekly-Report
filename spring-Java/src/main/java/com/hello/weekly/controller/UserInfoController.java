@@ -8,8 +8,6 @@ import com.hello.weekly.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Year;
-
 /**
  * @discription: 用户信息管理
  * @author: Zhang
