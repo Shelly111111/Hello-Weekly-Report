@@ -17,21 +17,21 @@ public class IdleTimeController {
     @Autowired
     private IdletimeMapper idletimeMapper;
 
-    @GetMapping("/user/idletime")
+    @GetMapping("/userdaily/idletime")
     public ResponseData findIdleTime(User user){
 
         //List<IdleTime> list = idletimeMapper.selectList(null);
 
-        return new ResponseData(ResponseData.success,"",idletimeMapper.selectById(user.getId()));
+        return new ResponseData(ResponseData.success,"查询成功！",idletimeMapper.selectById(user.getId()));
         //return new ResponseData(ResponseData.success,"",list);
     }
 
-    @PostMapping("/user/update")
+    @PostMapping("/userdaily/idletime")
     public ResponseData update(IdleTime idleTime){
 
         idletimeMapper.updateById(idleTime);
 
-        return  new ResponseData(ResponseData.success,"");
+        return  new ResponseData(ResponseData.success,"查询成功！");
     }
 
 }
