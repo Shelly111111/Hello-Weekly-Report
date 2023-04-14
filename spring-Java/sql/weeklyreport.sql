@@ -40,7 +40,7 @@ CREATE TABLE IdleTime (
     userId int NOT NULL,
     date date NOT NULL,
     time time NOT NULL,
-    idel tinyint(1) NOT NULL,
+    idle tinyint(1) NOT NULL,
     PRIMARY KEY (`Id`) USING BTREE,
     FOREIGN KEY (userId) REFERENCES User (Id)
 )CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
