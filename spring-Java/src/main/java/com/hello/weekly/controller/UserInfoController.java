@@ -6,10 +6,7 @@ import com.hello.weekly.pojo.UserInfo;
 import com.hello.weekly.service.UserInfoService;
 import com.hello.weekly.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Year;
 
@@ -34,7 +31,7 @@ public class UserInfoController {
      * @author: Zhang
      * @date: 2023/4/14
      */
-    @PutMapping("/userInfo")
+    @GetMapping("/userInfo")
     public ResponseData userInfo(@RequestParam(value = "username") String username) {
         User user = userService.findByUsername(username);
 
