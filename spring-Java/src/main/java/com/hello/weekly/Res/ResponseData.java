@@ -1,21 +1,47 @@
 package com.hello.weekly.Res;
 
+import lombok.*;
+
+@AllArgsConstructor
+@Setter
+@Getter
+@EqualsAndHashCode
 public class ResponseData {
 
-    //状态码
-    public Integer code;
-    //消息
-    public String message;
-    //数据
-    public Object data;
+    /**
+     * 状态码
+     */
+    private Integer code;
+    /**
+     * 消息
+     */
+    private String message;
+    /**
+     * 数据
+     */
+    private Object data;
 
+    /**
+     * 未找到
+     */
+    public static final int notFound = 461;
+    /**
+     * 匹配错误
+     */
+    public static final int error = 462;
+    /**
+     * 成功
+     */
+    public static final int success = 200;
 
-    public ResponseData(Integer code, String msg, Object data) {
-        this.code = code;
-        this.message = msg;
-        this.data = data;
-    }
-
+    /***
+     * @discription:
+     *
+     * @param code
+     * @param msg
+     * @author: Zhang
+     * @date: 2023/4/13
+     */
     public ResponseData(Integer code, String msg) {
         this.code = code;
         this.message = msg;
