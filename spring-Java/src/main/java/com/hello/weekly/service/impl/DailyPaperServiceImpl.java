@@ -1,6 +1,7 @@
 package com.hello.weekly.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.hello.weekly.Res.ResponseData;
 import com.hello.weekly.Res.ResponsePage;
 import com.hello.weekly.mapper.DailyPaperMapper;
 import com.hello.weekly.pojo.DailyPaper;
@@ -30,7 +31,10 @@ public class DailyPaperServiceImpl implements DailyPaperService {
     }
 
     @Override
-    public Integer insertPaper(DailyPaper dailyPaper) {
-        return null;
+    public ResponseData addPaper(DailyPaper dailyPaper) {
+        if (1 == dailyPaperMapper.insert(dailyPaper)){
+            return new ResponseData(ResponseData.error, "添加成功！");
+        }
+        return new ResponseData(ResponseData.error, "添加失败！");
     }
 }

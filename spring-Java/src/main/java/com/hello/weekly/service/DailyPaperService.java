@@ -1,5 +1,6 @@
 package com.hello.weekly.service;
 
+import com.hello.weekly.Res.ResponseData;
 import com.hello.weekly.Res.ResponsePage;
 import com.hello.weekly.pojo.DailyPaper;
 
@@ -12,6 +13,6 @@ import java.util.List;
 public interface DailyPaperService {
     ResponsePage getPaperByPage(int currentPage, int size);
     //查询所有日报
-    Integer insertPaper(DailyPaper dailyPaper);
+    ResponseData addPaper(DailyPaper dailyPaper);
     //新增一条日报
 }
