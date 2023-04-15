@@ -25,10 +25,10 @@ public class UserCourseController {
     public List<UserCourse1> userCourse(@RequestParam(value = "userid") Integer userid){//@RequestParam(value = "userid")
 
         List<UserCourse> userCourses = userCourseService.findUserCourse(userid);
-       if(userCourses != null) {
-           List<UserCourse1> userCourse1s = userCourseService1.selectAllUserCourse(userCourses);
-           return userCourse1s;
-       }
+        if(userCourses != null) {
+            List<UserCourse1> userCourse1s = userCourseService1.selectAllUserCourse(userCourses);
+            return userCourse1s;
+        }
 
 
         return null;

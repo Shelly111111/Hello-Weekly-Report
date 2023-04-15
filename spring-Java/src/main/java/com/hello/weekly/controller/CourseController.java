@@ -16,7 +16,7 @@ public class CourseController {
     private CourseService courseService;
 
     @PostMapping("/course")
-     public List<Course> course(@RequestParam(value = "technicalDirection") String technicalDirection) {
+    public List<Course> course(@RequestParam(value = "technicalDirection") String technicalDirection) {
 
         List<Course> course = courseService.findCourse(technicalDirection);
 

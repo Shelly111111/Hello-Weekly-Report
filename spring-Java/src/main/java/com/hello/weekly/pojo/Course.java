@@ -27,7 +27,6 @@ public class Course {
     @TableField("dateTime")
     private String dateTime;
 
-
     @TableField("technicalDirection")
     private  String technicalDirection;
 

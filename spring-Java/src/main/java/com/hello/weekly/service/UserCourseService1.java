@@ -9,6 +9,5 @@ public interface UserCourseService1 {
     /***
      * 查找
      */
-
     List<UserCourse1> selectAllUserCourse(List<UserCourse> userCourses);
 }

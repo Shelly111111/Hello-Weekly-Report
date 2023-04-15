@@ -1,7 +1,6 @@
 package com.hello.weekly.service.impl;
 
 import com.hello.weekly.mapper.CourseMapper;
-import com.hello.weekly.mapper.UserCourseMapper;
 import com.hello.weekly.pojo.Course;
 import com.hello.weekly.pojo.UserCourse;
 import com.hello.weekly.pojo.UserCourse1;
@@ -25,8 +24,8 @@ public class UserCourseService1Impl implements UserCourseService1 {
         for (UserCourse userCourse : userCourses
         ) {
             Course course = courseMapper.selectById(userCourse.getCourseId());
-                UserCourse1 a = new UserCourse1(userCourse, course.getTitle(), course.getDescription(), course.getDateTime(), course.getTechnicalDirection(), course.getLevel(), course.getMode());
-                userCourse1s.add(a);
+            UserCourse1 a = new UserCourse1(userCourse, course.getTitle(), course.getDescription(), course.getDateTime(), course.getTechnicalDirection(), course.getLevel(), course.getMode());
+            userCourse1s.add(a);
 
         }
 

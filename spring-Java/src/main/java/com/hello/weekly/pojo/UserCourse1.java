@@ -12,6 +12,7 @@ import lombok.Setter;
 @EqualsAndHashCode
 public class UserCourse1 {
 
+
     private  UserCourse userCourse;
 
     private String title;
