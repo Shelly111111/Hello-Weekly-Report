@@ -1,9 +1,12 @@
 package com.hello.weekly;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@MapperScan("com.hello.weekly.mapper")
+//在SpringBoot启动类中添加@MapperScan注解，扫描Mapper文件夹
 public class WeeklyReportApplication {
 
     public static void main(String[] args) {
