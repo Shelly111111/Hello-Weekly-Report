@@ -1,10 +1,13 @@
 package com.hello.weekly.pojo;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -14,11 +17,13 @@ import java.util.Date;
 @TableName("dailypaper")
 //有时候关联属性字段与表结构不一致，导致使用时报错
 public class DailyPaper {
-    private int Id;
-    //日报标识符
+    @TableId(type = IdType.AUTO)
+    private Integer Id;
+    //日报标识符，自增
     @TableField(value = "userid")
-    private int userId;
+    private Integer userId;
     //用户Id
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     //日报日期
     @TableField(value = "completework")

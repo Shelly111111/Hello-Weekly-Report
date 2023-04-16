@@ -5,10 +5,7 @@ import com.hello.weekly.Res.ResponsePage;
 import com.hello.weekly.pojo.DailyPaper;
 import com.hello.weekly.service.DailyPaperService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 日报控制器
@@ -27,4 +24,9 @@ public class DailyPaperController {
     }
 
 
+    //新增一条日报
+    @PostMapping("/addpaper")
+    public ResponseData addPaper(@RequestBody DailyPaper dailyPaper) {
+        return dailyPaperService.addPaper(dailyPaper);
+    }
 }

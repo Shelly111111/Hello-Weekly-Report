@@ -13,10 +13,10 @@ import java.util.Date;
 @NoArgsConstructor
 @TableName("weeklypaper")
 public class WeeklyPaper {
-    private int Id;
+    private Integer Id;
     //周报标识符
     @TableField(value = "userid")
-    private int userId;
+    private Integer userId;
     //用户Id
     private Date date;
     //日报日期
