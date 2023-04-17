@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS WeeklyPaper;
 -- 创建表
 -- -1. 用户表
 CREATE TABLE User (
-    Id int NOT NULL,
+    Id int NOT NULL auto_increment,
     username varchar(255) UNIQUE,
     password varchar(255),
     PRIMARY KEY (`Id`) USING BTREE
@@ -24,19 +24,19 @@ CREATE TABLE User (
 
 -- -2. 用户信息表
 CREATE TABLE UserInformation (
-    userId int NOT NULL,
+    Id int NOT NULL auto_increment,
     nickName varchar(255) NOT NULL,
     headSculpture longtext,
     college text,
     major text,
     grade year DEFAULT NULL,
-    PRIMARY KEY (`userId`) USING BTREE,
-    FOREIGN KEY (userId) REFERENCES User (Id)
+    PRIMARY KEY (`Id`) USING BTREE,
+    FOREIGN KEY (Id) REFERENCES User (Id)
 )CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 -- -3. 空闲时刻表
 CREATE TABLE IdleTime (
-    Id int NOT NULL,
+    Id int NOT NULL auto_increment,
     userId int NOT NULL,
     date date NOT NULL,
     time time NOT NULL,
@@ -47,10 +47,10 @@ CREATE TABLE IdleTime (
 
 -- -4. 打卡记录表
 CREATE TABLE ClockInRecord (
-    Id int NOT NULL,
+    Id int NOT NULL auto_increment,
     userId int NOT NULL,
     date date NOT NULL,
-    time time NOT NULL,
+    time varchar(255) NOT NULL,
     workHour int NOT NULL DEFAULT 0,
     PRIMARY KEY (`Id`) USING BTREE,
     FOREIGN KEY (userId) REFERENCES User (Id)
@@ -58,7 +58,7 @@ CREATE TABLE ClockInRecord (
 
 -- -5. 课程表
 CREATE TABLE Course (
-    Id int NOT NULL,
+    Id int NOT NULL auto_increment,
     title varchar(255),
     description text,
     dateTime datetime,
@@ -70,7 +70,7 @@ CREATE TABLE Course (
 
 -- -6. 参与课程表
 CREATE TABLE UserCourse (
-    Id int NOT NULL,
+    Id int NOT NULL auto_increment,
     userId int NOT NULL,
     courseId int NOT NULL,
     PRIMARY KEY (`Id`) USING BTREE,
@@ -80,7 +80,7 @@ CREATE TABLE UserCourse (
 
 -- -7. 日报表
 CREATE TABLE DailyPaper (
-    Id int NOT NULL,
+    Id int NOT NULL auto_increment,
     userId int NOT NULL,
     date date NOT NULL,
     completeWork longtext,
@@ -92,10 +92,11 @@ CREATE TABLE DailyPaper (
 
 -- -8. 周报表
 CREATE TABLE WeeklyPaper (
-    Id int NOT NULL,
+    Id int NOT NULL auto_increment,
     userId int NOT NULL,
-    date date NOT NULL,
+    date varchar(255) NOT NULL,
     completeWork longtext,
+    risk longtext,
     nextPlan longtext,
     delay tinyint(1) NOT NULL,
     PRIMARY KEY (`Id`) USING BTREE,
@@ -103,4 +104,6 @@ CREATE TABLE WeeklyPaper (
 )CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 -- 插入数据
-insert into user (Id, username, password) values (1,'admin','123');
+insert into user (username, password) values ('admin','123');
+insert into UserInformation(nickName, headSculpture, college, major, grade) values ('张三','12a31fa5rea12df15ar','计算机科学与技术','计算机科学与技术',2021);
+insert into ClockInRecord(userId, date, time, workHour) values (1,'2023-4-14','10-20',20);

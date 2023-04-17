@@ -35,6 +35,12 @@ public class ResponseData {
     public static final int success = 200;
 
     /***
+     * 警告
+     */
+    public static final int warn = 300;
+
+
+    /***
      * @discription:
      *
      * @param code
