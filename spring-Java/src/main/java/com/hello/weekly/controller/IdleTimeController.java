@@ -28,9 +28,13 @@ public class IdleTimeController {
     public ResponseData findIdleTime(String username){
 
         if (userService.findByUsername(username)!=null){
+
         int userid  = userService.findByUsername(username).getId();
+
         IdleTime idleTime = idletimeMapper.selectById(userid);
+
         return new ResponseData(ResponseData.success,"查询成功！",idleTime);
+
         }else {
             return new ResponseData(ResponseData.notFound,"未找到用户");
         }
@@ -39,9 +43,13 @@ public class IdleTimeController {
     @PostMapping("/userdaily/idletime")
     public ResponseData update(IdleTime idleTime){
 
-        idletimeMapper.updateById(idleTime);
-
-        return  new ResponseData(ResponseData.success,"修改成功！");
+        int num = idletimeMapper.updateById(idleTime);
+        if (num > 0) {
+            return new ResponseData(ResponseData.success, "修改成功！");
+        } else {
+            return new ResponseData(ResponseData.error, "修改失败");
+        }
     }
 
 }
+
