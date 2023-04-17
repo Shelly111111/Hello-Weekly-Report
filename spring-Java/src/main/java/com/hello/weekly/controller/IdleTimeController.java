@@ -27,20 +27,13 @@ public class IdleTimeController {
     @GetMapping("/userdaily/idletime")
     public ResponseData findIdleTime(String username){
 
-
-         int userid  = userService.findByUsername(username).getId();
-        //System.out.println(userid);
-        //QueryWrapper<IdleTime> wrapper = new QueryWrapper<IdleTime>();
-        //wrapper.eq("Id",userid);
-        if (userid>0){
+        if (userService.findByUsername(username)!=null){
+        int userid  = userService.findByUsername(username).getId();
         IdleTime idleTime = idletimeMapper.selectById(userid);
-
         return new ResponseData(ResponseData.success,"查询成功！",idleTime);
         }else {
             return new ResponseData(ResponseData.notFound,"未找到用户");
         }
-
-        //return new ResponseData(ResponseData.success,"",list);
     }
 
     @PostMapping("/userdaily/idletime")
@@ -48,7 +41,7 @@ public class IdleTimeController {
 
         idletimeMapper.updateById(idleTime);
 
-        return  new ResponseData(ResponseData.success,"查询成功！");
+        return  new ResponseData(ResponseData.success,"修改成功！");
     }
 
 }
