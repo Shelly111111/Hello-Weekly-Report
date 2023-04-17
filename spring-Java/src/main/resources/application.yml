@@ -6,13 +6,4 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/weekly_report?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
-    password: mysql1970s
-  jackson:
-    date-format: yyyy-MM-dd
-    time-zone: GMT+8
-
-#打印日志配置
-mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
+    password: 123456
