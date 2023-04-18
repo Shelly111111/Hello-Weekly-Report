@@ -7,6 +7,9 @@ import com.hello.weekly.service.DailyPaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * 日报控制器
  */
@@ -18,15 +21,21 @@ public class DailyPaperController {
 
     //获取日报（分页）
     @PostMapping("/")
-    public ResponsePage getPaper(@RequestParam(defaultValue =  "1") int currentPage,
-                                 @RequestParam(defaultValue = "10") int size){
-        return dailyPaperService.getPaperByPage(currentPage, size);
+    public ResponsePage getPaper(@RequestParam(defaultValue =  "1") int currentpage,
+                                 @RequestParam(defaultValue = "10") int size, String username){
+        return dailyPaperService.getPaperByPage(currentpage, size, username);
     }
 
 
     //新增一条日报
     @PostMapping("/addpaper")
-    public ResponseData addPaper(@RequestBody DailyPaper dailyPaper) {
-        return dailyPaperService.addPaper(dailyPaper);
+    public ResponseData addPaper(@RequestBody DailyPaper dailyPaper, String username) {
+        return dailyPaperService.addPaper(dailyPaper, username);
+    }
+
+    //根据日期获取日报
+    @GetMapping("/getpaperbydate")
+    public List<DailyPaper> getPaperByDate(Date starttime, Date endtime, String username){
+        return dailyPaperService.getPaperByDate(starttime, endtime, username);
     }
 }

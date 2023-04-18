@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,8 +19,10 @@ import java.util.Date;
 //有时候关联属性字段与表结构不一致，导致使用时报错
 public class DailyPaper {
     @TableId(type = IdType.AUTO)
+    @JsonIgnore
     private Integer Id;
     //日报标识符，自增
+    @JsonIgnore
     @TableField(value = "userid")
     private Integer userId;
     //用户Id
@@ -31,6 +34,6 @@ public class DailyPaper {
     //完成的工作
     private String risk;
     //目前的风险
-    private boolean delay;
+    private Boolean delay;
     //是否有延迟
 }

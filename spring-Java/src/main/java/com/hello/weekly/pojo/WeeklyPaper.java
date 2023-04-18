@@ -28,6 +28,6 @@ public class WeeklyPaper {
     @TableField(value = "nextplan")
     private String nextPlan;
     //下周计划
-    private boolean delay;
+    private Boolean delay;
     //是否有延迟
 }
