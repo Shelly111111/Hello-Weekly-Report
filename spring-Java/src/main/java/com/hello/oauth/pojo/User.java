@@ -1,4 +1,4 @@
-package com.hello.weekly.pojo;
+package com.hello.oauth.pojo;
 
 import lombok.*;
 

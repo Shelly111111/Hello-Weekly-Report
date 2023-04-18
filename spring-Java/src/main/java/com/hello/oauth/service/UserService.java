@@ -1,6 +1,7 @@
-package com.hello.weekly.service;
+package com.hello.oauth.service;
 
-import com.hello.weekly.pojo.User;
+import com.hello.oauth.pojo.User;
+
 import java.util.List;
 
 public interface UserService {
