@@ -42,5 +42,10 @@ public class UserInfo {
      * 年级
      */
     private Integer grade;
+    /**
+     * 用户Id
+     */
+    @TableField("userId")
+    private Integer userId;
 
 }

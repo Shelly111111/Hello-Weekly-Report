@@ -20,14 +20,24 @@ public interface UserInfoService {
     Integer insertUserInfo(UserInfo userInfo);
 
     /**
-     * 根据uid查找用户信息
-     * @param uid 用户id
+     * 根据id查找用户信息
+     * @param id id
      * @return com.hello.weekly.pojo.UserInfo
      *
      * @author: Zhang
      * @date: 2023/4/14
      */
-    UserInfo findByUid(Integer uid);
+    UserInfo findById(Integer id);
+
+    /**
+     * 根据uid查找用户信息
+     * @param Uid 用户id
+     * @return com.hello.weekly.pojo.UserInfo
+     *
+     * @author: Zhang
+     * @date: 2023/4/19
+     */
+    UserInfo findByUid(Integer Uid);
 
     /**
      * 更新用户信息

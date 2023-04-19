@@ -11,12 +11,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 删除token服务
+ *
+ * @author： 漫舞枪神
+ * @date: 2023/4/19
+ */
 @FrameworkEndpoint
 public class RevokeTokenEndpoint {
 
     @Resource(name = "tokenServices")
     private ConsumerTokenServices tokenServices;
 
+    /**
+     * 删除token
+     *
+     * @param request javax.servlet.http.HttpServletRequest
+     * @return com.hello.oauth.Res.ResponseData
+     *
+     * @author: 漫舞枪神
+     * @date: 2023/4/19
+     */
     @RequestMapping(method = RequestMethod.POST, value = "/oauth/revoke")
     @ResponseBody
     public ResponseData revokeToken(HttpServletRequest request) {
