@@ -104,6 +104,12 @@
             <version>3.5.2</version>
         </dependency>
 
+        <!--reactor core-->
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+        </dependency>
+
         <!--
             将对应数据转换为 JSON 字符串的工具依赖，但是我们都知道 responseBody 可以将一个对象返回作为 JSON 字符串，但是我们为什么还是要使用该依赖
             主要是因为那个我们只能返回一个对象作为 字符串，但是如果我们要返回多个数据的话需要进行封装对象，所以我们这里使用这个 JSON 工具进行转换的话，我们

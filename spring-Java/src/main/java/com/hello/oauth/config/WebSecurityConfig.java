@@ -34,10 +34,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //链式配置拦截策略
-        http.csrf().disable()//关闭csrf跨域检查
+        http.cors().and().csrf().disable()//关闭cors和csrf跨域检查
                 .authorizeRequests()
                 .antMatchers("/**").hasAnyAuthority("admin")//admin可以登录所有页面
-                .antMatchers("/com/hello/oauth/**").permitAll()//所有人都能登录
+                .antMatchers("/oauth/**").permitAll()//所有人都能登录
 //                .antMatchers("/login").permitAll()//所有人都能登录
                 .anyRequest().authenticated();//其他请求需要登录
 //                .and()

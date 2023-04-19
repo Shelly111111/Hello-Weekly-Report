@@ -52,10 +52,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .withClient("client_1")//客户端ID
                 .resourceIds("admin")//客户端拥有的资源列表
                 .authorizedGrantTypes("password", "refresh_token")//认证范围，"authorization_code"、"password"、"client_credentials"、"implicit"、"refresh_token"
-                .scopes("all");//允许授权的范围
+                .scopes("all")//允许授权的范围
 //                .autoApprove(false)//跳转到授权页面
-//                .authorities("oauth2")
-//                .secret(finalSecret);
+//                .authorities("admin")
+                .secret("secret");
     }
 
     /**
@@ -101,6 +101,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
         oauthServer
                 .checkTokenAccess("permitAll()")//oauth/check_token公开
+                .tokenKeyAccess("permitAll()")
                 .allowFormAuthenticationForClients();//表单认证，申请令牌
     }
 
