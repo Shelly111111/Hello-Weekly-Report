@@ -1,5 +1,6 @@
 package com.hello.oauth.config;
 
+import com.hello.oauth.Res.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.endpoint.FrameworkEndpoint;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
@@ -18,13 +19,15 @@ public class RevokeTokenEndpoint {
 
     @RequestMapping(method = RequestMethod.POST, value = "/oauth/revoke")
     @ResponseBody
-    public Boolean revokeToken(HttpServletRequest request) {
+    public ResponseData revokeToken(HttpServletRequest request) {
         String authorization = request.getHeader("Authorization");
         if (authorization != null && authorization.contains("Bearer")) {
             String tokenId = authorization.substring("Bearer".length() + 1);
-            return tokenServices.revokeToken(tokenId);
+            if(tokenServices.revokeToken(tokenId))
+                return new ResponseData(ResponseData.success,"删除token成功！");
+            return new ResponseData(ResponseData.notFound,"token未存在，可能您输入的token错误！");
         }
-        return false;
+        return new ResponseData(ResponseData.error,"您输入的token格式错误！");
     }
 
 }
