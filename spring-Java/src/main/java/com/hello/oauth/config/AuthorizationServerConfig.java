@@ -24,7 +24,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
-    AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -36,9 +36,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     /**
      * 配置客户端详情服务
+     *
      * @param clients org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer
      * @throws Exception
-     *
      * @author: 漫舞枪神
      * @date: 2023/4/18
      */
@@ -60,11 +60,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     /**
      * 令牌管理服务
-     * @return org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices
      *
+     * @return org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices
      * @author: 漫舞枪神
      * @date: 2023/4/18
      */
+    @Bean
     public AuthorizationServerTokenServices tokenServices() {
         DefaultTokenServices services = new DefaultTokenServices();
         services.setClientDetailsService(clientDetailsService);//客户端详情服务
@@ -87,13 +88,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .userDetailsService(userDetailsService)//用户管理
                 .authenticationManager(authenticationManager)//启用oauth2管理
                 .tokenServices(tokenServices())//令牌管理服务
-                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);//接收GET和POST
+                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST, HttpMethod.DELETE);//接收GET和POST
     }
 
     /**
      * 配置令牌端点申请令牌的安全约束
-     * @param oauthServer org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer
      *
+     * @param oauthServer org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer
      * @author: 漫舞枪神
      * @date: 2023/4/18
      */
@@ -107,8 +108,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     /**
      * 设置授权码模式的授权码如何存取
-     * @return org.springframework.security.oauth2.provider.code.AuthorizationCodeServices
      *
+     * @return org.springframework.security.oauth2.provider.code.AuthorizationCodeServices
      * @author: 漫舞枪神
      * @date: 2023/4/18
      */
