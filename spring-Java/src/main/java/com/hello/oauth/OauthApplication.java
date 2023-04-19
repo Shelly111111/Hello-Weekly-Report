@@ -1,13 +1,13 @@
-package com.hello.weekly;
+package com.hello.oauth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WeeklyReportApplication {
+public class OauthApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(WeeklyReportApplication.class, args);
+        SpringApplication.run(OauthApplication.class, args);
     }
 
 }

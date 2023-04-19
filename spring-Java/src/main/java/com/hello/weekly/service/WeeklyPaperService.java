@@ -1,26 +1,17 @@
 package com.hello.weekly.service;
 
+import com.hello.weekly.Res.ResponseData;
+import com.hello.weekly.Res.ResponsePage;
+import com.hello.weekly.pojo.DailyPaper;
 import com.hello.weekly.pojo.WeeklyPaper;
 
+import java.util.Date;
 import java.util.List;
 
 public interface WeeklyPaperService {
-
-    /***
-     * 寻找对应userid的周报
-     * @param userid
-     * @return
-     */
-     List<WeeklyPaper> findWeeklyPaper(Integer userid);
-
-    /***
-     * 录入周报
-     * @param userid
-     * @param date
-     * @param completeWork
-     * @param nextPlan
-     * @param delay
-     * @return
-     */
-     Boolean inserWeeklyPaper(Integer id,Integer userid,String date,String completeWork,String nextPlan,String delay);
+    ResponsePage getPaperByPage(int currentPage, int size, int userid);
+    //查询所有日报
+    ResponseData addPaper(WeeklyPaper weeklyPaper, int userid);
+    //新增一条日报
+    List<WeeklyPaper> getPaperByDate(String time, int userid);
 }

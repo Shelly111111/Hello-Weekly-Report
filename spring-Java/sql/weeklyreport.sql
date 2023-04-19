@@ -39,7 +39,7 @@ CREATE TABLE IdleTime (
     Id int NOT NULL auto_increment,
     userId int NOT NULL,
     date date NOT NULL,
-    time time NOT NULL,
+    time varchar(255) NOT NULL,
     idle tinyint(1) NOT NULL,
     PRIMARY KEY (`Id`) USING BTREE,
     FOREIGN KEY (userId) REFERENCES User (Id)

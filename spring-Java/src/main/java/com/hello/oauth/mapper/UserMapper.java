@@ -1,11 +1,12 @@
-package com.hello.weekly.mapper;
+package com.hello.oauth.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.hello.weekly.pojo.WeeklyPaper;
+import com.hello.oauth.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-@Mapper
 @Repository
-public interface WeeklyPaperMapper extends BaseMapper<WeeklyPaper> {
+@Mapper
+public interface UserMapper extends BaseMapper<User> {
+
 }
