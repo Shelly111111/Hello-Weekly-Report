@@ -9,9 +9,9 @@ import java.util.Date;
 import java.util.List;
 
 public interface WeeklyPaperService {
-    ResponsePage getPaperByPage(int currentPage, int size, int userid);
+    ResponsePage getPaperByPage(int currentpage, int size, int userid);
     //查询所有日报
-    ResponseData addPaper(WeeklyPaper weeklyPaper, int userid);
+    ResponseData addPaper(WeeklyPaper weeklypaper, int userid);
     //新增一条日报
     List<WeeklyPaper> getPaperByDate(String time, int userid);
 }
