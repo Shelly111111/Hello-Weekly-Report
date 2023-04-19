@@ -21,7 +21,8 @@ public class ChangePasswordController {
      */
     @PostMapping("/change")
     public ResponseData change(@RequestParam(value = "username") String username,
-                               @RequestParam(value = "password") String password){
+                               @RequestParam(value = "oldpassword") String oldpassword,
+                               @RequestParam(value = "newpassword") String newpassword){
 
         User user = userService.findByUsername(username);
 
@@ -29,16 +30,18 @@ public class ChangePasswordController {
         if (user == null) {
             return new ResponseData(ResponseData.notFound, "该用户不存在！");
         }
-
-
-        if(user.getPassword().equals(password)){
+        //判断旧密码是否输入正确
+        if(!user.getPassword().equals(oldpassword)){
+            return new ResponseData(ResponseData.error,"旧密码输入错误！");
+        }
+        //判断新旧密码是否一样
+        if(user.getPassword().equals(newpassword)){
             return new ResponseData(ResponseData.warn, "新旧密码一样！");
         }
 
             // 修改密码成功
-            User a = new User(user.getId(), username, password);
-            if (changePasswordService.changePassword(a) == null)
-                return new ResponseData(ResponseData.error, "修改密码失败！");
+            User a = new User(user.getId(), username, newpassword);
+            changePasswordService.changePassword(a);
             return new ResponseData(ResponseData.success, "修改密码成功！");
 
     }
