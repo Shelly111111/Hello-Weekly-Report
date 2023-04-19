@@ -9,9 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static com.baomidou.mybatisplus.extension.toolkit.SimpleQuery.list;
-import static com.baomidou.mybatisplus.extension.toolkit.SimpleQuery.selectList;
-
 @SpringBootTest
 class WeeklyReportApplicationTests {
 

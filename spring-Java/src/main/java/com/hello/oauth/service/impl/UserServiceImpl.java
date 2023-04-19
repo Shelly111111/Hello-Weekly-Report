@@ -1,12 +1,13 @@
-package com.hello.weekly.service.impl;
+package com.hello.oauth.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.hello.weekly.mapper.UserMapper;
-import com.hello.weekly.pojo.User;
-import com.hello.weekly.service.UserService;
+import com.hello.oauth.mapper.UserMapper;
+import com.hello.oauth.pojo.User;
+import com.hello.oauth.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
