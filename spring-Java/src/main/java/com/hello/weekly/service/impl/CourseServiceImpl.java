@@ -1,12 +1,17 @@
 package com.hello.weekly.service.impl;
 
+
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.hello.weekly.Res.ResponsePage;
 import com.hello.weekly.mapper.CourseMapper;
 import com.hello.weekly.pojo.Course;
 import com.hello.weekly.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -16,15 +21,27 @@ public class CourseServiceImpl implements CourseService {
 
 
     /***
-     * 从数据库中选择信息
+     * 从数据库中选择信息,并实现分页
      */
     @Override
-    public List<Course> findCourse(String technicalDirection){
-        Map<String, Object> map = new HashMap<>();
-        map.put("technicalDirection", technicalDirection);
-        List<Course> course = courseMapper.selectByMap(map);
-        if (course.isEmpty()) return null;
-        return course;
+    public ResponsePage findCourse(Integer pageNum,Integer pageSize,String technicalDirection){
+        Page<Course> page = new Page<>(pageNum,pageSize);
+        LambdaQueryWrapper<Course> userLambdaQueryWrapper = Wrappers.lambdaQuery();
+        userLambdaQueryWrapper.like(Course::getTechnicalDirection , technicalDirection);
+        courseMapper.selectPage(page,userLambdaQueryWrapper);
+        return new ResponsePage(page.getTotal(),page.getRecords());
     }
+
+    /***
+     * 根据userid
+     * @param userid
+     * @return
+     */
+
+    @Override
+    public Course selectCourse(Integer userid){
+         Course courses = courseMapper.selectById(userid);
+        return courses;
+    };
 
 }

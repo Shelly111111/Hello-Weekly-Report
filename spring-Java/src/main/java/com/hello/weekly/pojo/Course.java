@@ -1,11 +1,14 @@
 package com.hello.weekly.pojo;
 
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import net.minidev.json.annotate.JsonIgnore;
 
 
 /***
@@ -15,9 +18,14 @@ import lombok.Setter;
 @Setter
 @Getter
 @EqualsAndHashCode
+@JsonIgnoreProperties({"id"})
 public class Course {
 
+    @JsonIgnore
+
+    @JSONField(serialize = false)
     private Integer id;
+
 
     private String title;
 

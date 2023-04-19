@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Mapper
-//extends BaseMapper<UserCourse>
 public interface UserCourseMapper extends BaseMapper<UserCourse>{
-
 
 }

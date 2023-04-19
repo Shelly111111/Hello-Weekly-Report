@@ -1,13 +1,13 @@
 package com.hello.weekly.controller;
 
-import com.hello.weekly.pojo.Course;
+import com.hello.weekly.Res.ResponseData;
+import com.hello.weekly.Res.ResponsePage;
 import com.hello.weekly.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 @RestController
 public class CourseController {
@@ -16,16 +16,18 @@ public class CourseController {
     private CourseService courseService;
 
     @PostMapping("/course")
-    public List<Course> course(@RequestParam(value = "technicalDirection") String technicalDirection) {
+    public ResponseData course(@RequestParam(value = "technicalDirection") String technicalDirection,
+                               @RequestParam(defaultValue =  "1") int pageNum,
+                               @RequestParam(defaultValue = "2") int pageSize)  {
 
-        List<Course> course = courseService.findCourse(technicalDirection);
+        ResponsePage course = courseService.findCourse(pageNum,pageSize,technicalDirection);
 
         //如果查询到，返回该类型，否则为null
         if (course != null) {
 
-            return course;
+            return new ResponseData(ResponseData.success,"查找成功！",course);
         }
-        return null;
+        return new ResponseData(ResponseData.warn,"该类型没有课程!");
     }
 
 }
