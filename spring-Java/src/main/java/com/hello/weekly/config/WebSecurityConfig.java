@@ -7,9 +7,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    /**
+     *
+     * @param http org.springframework.security.config.annotation.web.builders.HttpSecurity
+     * @throws Exception
+     *
+     * @author: 漫舞枪神
+     * @date: 2023/4/119
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/**")
                 .hasAnyAuthority("admin")//这里采用了注解的方法级权限配置
