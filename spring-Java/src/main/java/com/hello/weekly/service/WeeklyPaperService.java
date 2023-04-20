@@ -14,4 +14,14 @@ public interface WeeklyPaperService {
     ResponseData addPaper(WeeklyPaper weeklypaper, int userid);
     //新增一条日报
     List<WeeklyPaper> getPaperByDate(String time, int userid);
+
+    /**
+     * 获取总周报数
+     * @param Uid 用户Id
+     * @return 总周报数
+     *
+     * @author: 漫舞枪神
+     * @date: 2023/4/20
+     */
+    Integer getTotalCount(Integer Uid);
 }

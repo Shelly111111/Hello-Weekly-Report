@@ -17,4 +17,14 @@ public interface DailyPaperService {
     ResponseData addPaper(DailyPaper dailyPaper, int userid);
     //新增一条日报
     List<DailyPaper> getPaperByDate(Date starttime, Date endtime, int userid);
+
+    /**
+     * 获取总日报数
+     * @param Uid 用户Id
+     * @return 总日报数
+     *
+     * @author: 漫舞枪神
+     * @date: 2023/4/20
+     */
+    Integer getTotalCount(Integer Uid);
 }
