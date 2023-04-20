@@ -1,13 +1,12 @@
 package com.hello.weekly.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hello.weekly.Res.ResponseData;
 import com.hello.weekly.Res.ResponsePage;
 import com.hello.weekly.mapper.DailyPaperMapper;
-import com.hello.weekly.mapper.UserMapper;
 import com.hello.weekly.pojo.DailyPaper;
-import com.hello.weekly.pojo.User;
 import com.hello.weekly.service.DailyPaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,9 +25,6 @@ public class DailyPaperServiceImpl implements DailyPaperService {
 
     @Autowired
     private DailyPaperMapper dailyPaperMapper;
-
-    @Autowired
-    private UserMapper userMapper;
 
     @Override
     public ResponsePage getPaperByPage(int currentpage, int size, int userid) {
@@ -66,7 +62,21 @@ public class DailyPaperServiceImpl implements DailyPaperService {
             return dailyPaperMapper.selectList(wrapper2);
         } catch (Exception e) {
             throw new RuntimeException(e);
-
         }
+    }
+
+    /**
+     * 获取总日报数
+     * @param Uid 用户Id
+     * @return 总日报数
+     *
+     * @author: 漫舞枪神
+     * @date: 2023/4/20
+     */
+    @Override
+    public Integer getTotalCount(Integer Uid) {
+        LambdaQueryWrapper<DailyPaper> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(DailyPaper::getUserId, Uid);
+        return dailyPaperMapper.selectCount(wrapper);
     }
 }

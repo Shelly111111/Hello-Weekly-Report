@@ -2,21 +2,18 @@ package com.hello.weekly.service.impl;
 
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hello.weekly.Res.ResponseData;
 import com.hello.weekly.Res.ResponsePage;
-import com.hello.weekly.mapper.DailyPaperMapper;
 import com.hello.weekly.mapper.UserMapper;
 import com.hello.weekly.mapper.WeeklyPaperMapper;
-import com.hello.weekly.pojo.DailyPaper;
-import com.hello.weekly.pojo.User;
 import com.hello.weekly.pojo.WeeklyPaper;
 import com.hello.weekly.service.WeeklyPaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -85,5 +82,20 @@ public class WeeklyPaperServiceImpl implements WeeklyPaperService {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * 获取总周报数
+     * @param Uid 用户Id
+     * @return 总周报数
+     *
+     * @author: 漫舞枪神
+     * @date: 2023/4/20
+     */
+    @Override
+    public Integer getTotalCount(Integer Uid) {
+        LambdaQueryWrapper<WeeklyPaper> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(WeeklyPaper::getUserId, Uid);
+        return weeklyPaperMapper.selectCount(wrapper);
     }
 }
