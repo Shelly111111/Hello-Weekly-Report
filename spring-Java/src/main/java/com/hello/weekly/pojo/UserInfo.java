@@ -1,7 +1,9 @@
 package com.hello.weekly.pojo;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.time.Year;
@@ -19,6 +21,8 @@ import java.time.Year;
 @TableName("UserInformation")
 public class UserInfo {
 
+    @JsonIgnore
+    @JSONField(serialize = false)
     private Integer Id;
     /***
      * 昵称
@@ -45,7 +49,8 @@ public class UserInfo {
     /**
      * 用户Id
      */
+    @JsonIgnore
+    @JSONField(serialize = false)
     @TableField("userId")
     private Integer userId;
-
 }

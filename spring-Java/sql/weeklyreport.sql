@@ -30,8 +30,9 @@ CREATE TABLE UserInformation (
     college text,
     major text,
     grade year DEFAULT NULL,
+    userId int Not NULL,
     PRIMARY KEY (`Id`) USING BTREE,
-    FOREIGN KEY (Id) REFERENCES User (Id)
+    FOREIGN KEY (userId) REFERENCES User (Id)
 )CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 -- -3. 空闲时刻表
@@ -105,5 +106,5 @@ CREATE TABLE WeeklyPaper (
 
 -- 插入数据
 insert into user (username, password) values ('admin','123');
-insert into UserInformation(nickName, headSculpture, college, major, grade) values ('张三','12a31fa5rea12df15ar','计算机科学与技术','计算机科学与技术',2021);
+insert into UserInformation(nickName, headSculpture, college, major, grade, userId) values ('张三','12a31fa5rea12df15ar','计算机科学与技术','计算机科学与技术',2021, 1);
 insert into ClockInRecord(userId, date, time, workHour) values (1,'2023-4-14','10-20',20);
