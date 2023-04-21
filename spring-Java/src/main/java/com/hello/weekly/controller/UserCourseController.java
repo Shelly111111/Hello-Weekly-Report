@@ -1,5 +1,6 @@
 package com.hello.weekly.controller;
 
+import com.hello.weekly.Req.Paper.GetPaper;
 import com.hello.weekly.Res.ResponseCourse;
 import com.hello.weekly.Res.ResponseData;
 import com.hello.weekly.Res.ResponsePage;
@@ -10,7 +11,7 @@ import com.hello.weekly.service.UserCourseService;
 import com.hello.weekly.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -27,25 +28,23 @@ public class UserCourseController {
 
     @Autowired
     private CourseService courseService;
+
     /***
      * 参与的课程
      */
     @PostMapping("/usercourse")
-    public ResponseData userCourse(@RequestParam(value = "username") String username,
-                                   @RequestParam(defaultValue =  "1") int pageNum,
-                                   @RequestParam(defaultValue = "2") int pageSize){//@RequestParam(value = "userid")
+    public ResponseData userCourse(@RequestBody GetPaper getPaper) {//@RequestParam(value = "userid")
 
-        User user = userService.findByUsername(username);
-        ResponseCourse responseCourse = userCourseService.findListCourse(pageNum,pageSize,user.getId());
+        User user = userService.findByUsername(getPaper.getUsername());
+        ResponseCourse responseCourse = userCourseService.findListCourse(getPaper.getCurrentpage(), getPaper.getSize(), user.getId());
         List<Course> courses = new ArrayList<>();
-        for (int i = 0;i < responseCourse.getData().size();i++) {
+        for (int i = 0; i < responseCourse.getData().size(); i++) {
             Course course = courseService.selectCourse(Integer.valueOf(responseCourse.getData().get(i).getCourseId()));
             courses.add(course);
         }
-        ResponsePage responsePage = new ResponsePage(responseCourse.getTotal(),courses);
-        if(responsePage == null)
-            return new ResponseData(ResponseData.notFound,"课表为空！");
-        return new ResponseData(ResponseData.success,"查找成功！",responsePage);
-
+        ResponsePage responsePage = new ResponsePage(responseCourse.getTotal(), courses);
+        if (responsePage == null)
+            return new ResponseData(ResponseData.notFound, "课表为空！");
+        return new ResponseData(ResponseData.success, "查找成功！", responsePage);
     }
 }
