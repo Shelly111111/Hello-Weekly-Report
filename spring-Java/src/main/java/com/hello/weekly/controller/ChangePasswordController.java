@@ -37,10 +37,6 @@ public class ChangePasswordController {
         if(user.getPassword().equals(changeInfo.getNewpassword())){
             return new ResponseData(ResponseData.warn, "新旧密码一样！");
         }
-        //判断两次新密码是否一样
-        if(!changeInfo.getNewpassword().equals(changeInfo.getNewpassword1())){
-            return new ResponseData(ResponseData.warn,"两次新密码不一样！");
-        }
 
             // 修改密码成功
             User a = new User(user.getId(), changeInfo.getUsername(), changeInfo.getNewpassword());

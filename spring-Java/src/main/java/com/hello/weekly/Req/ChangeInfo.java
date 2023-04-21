@@ -14,5 +14,4 @@ public class ChangeInfo {
     private String username;
     private String oldpassword;
     private String newpassword;
-    private String newpassword1;
 }
