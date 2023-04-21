@@ -28,7 +28,7 @@ public class UserDailyCheckin {
 
     private Date date;
 
-    private Time time;
+    private String time;
 
     @TableField(value = "workHour")
     private Integer work_hour;

@@ -47,8 +47,7 @@ public class UserDailyCheckinController {
         if (user == null) {
             return new ResponseData(ResponseData.notFound, "该用户不存在！");
         }
-        List<UserDailyCheckin> userDailyCheckinList = userDailyCheckinService.getRecordByPage(user.getId(), currentPage, size);
-        long totalPage = userDailyCheckinService.getPageTotalSize(user.getId(), size);
-        return new ResponseData(ResponseData.success, "查找成功", new ResponsePage(totalPage, userDailyCheckinList));
+        ResponsePage responsePage = userDailyCheckinService.getRecordByPage(user.getId(), currentPage, size);
+        return new ResponseData(ResponseData.success, "查找成功", responsePage);
     }
 }
