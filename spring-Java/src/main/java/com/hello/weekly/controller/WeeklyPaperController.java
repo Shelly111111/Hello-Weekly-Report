@@ -1,17 +1,16 @@
 package com.hello.weekly.controller;
 
+import com.hello.weekly.Req.Paper.AddWeeklyPaper;
+import com.hello.weekly.Req.Paper.GetPaper;
 import com.hello.weekly.Res.ResponseData;
 import com.hello.weekly.Res.ResponsePage;
-import com.hello.weekly.pojo.DailyPaper;
 import com.hello.weekly.pojo.User;
 import com.hello.weekly.pojo.WeeklyPaper;
-import com.hello.weekly.service.DailyPaperService;
 import com.hello.weekly.service.UserService;
 import com.hello.weekly.service.WeeklyPaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -24,19 +23,18 @@ public class WeeklyPaperController {
     private UserService userService;
 
     //获取周报（分页）
-    @PostMapping("/")
-    public ResponsePage getPaper(@RequestParam(defaultValue =  "1") int currentpage,
-                                 @RequestParam(defaultValue = "10") int size, String username){
-        User user = userService.findByUsername(username);
+    @PostMapping
+    public ResponsePage getPaper(@RequestBody GetPaper getPaper){
+        User user = userService.findByUsername(getPaper.getUsername());
 
-        return weeklyPaperService.getPaperByPage(currentpage, size, user.getId());
+        return weeklyPaperService.getPaperByPage(getPaper.getCurrentpage(), getPaper.getSize(), user.getId());
     }
 
     //新增一条周报
     @PostMapping("/addpaper")
-    public ResponseData addPaper(@RequestBody WeeklyPaper weeklypaper, String username) {
-        User user = userService.findByUsername(username);
-        return weeklyPaperService.addPaper(weeklypaper, user.getId());
+    public ResponseData addPaper(@RequestBody AddWeeklyPaper addWeeklyPaper) {
+        User user = userService.findByUsername(addWeeklyPaper.getUsername());
+        return weeklyPaperService.addPaper(addWeeklyPaper.getWeeklyPaper(), user.getId());
     }
 
 

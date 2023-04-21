@@ -1,5 +1,7 @@
 package com.hello.weekly.controller;
 
+import com.hello.weekly.Req.Paper.AddDailyPaper;
+import com.hello.weekly.Req.Paper.GetPaper;
 import com.hello.weekly.Res.ResponseData;
 import com.hello.weekly.Res.ResponsePage;
 import com.hello.weekly.pojo.DailyPaper;
@@ -25,20 +27,19 @@ public class DailyPaperController {
     private UserService userService;
 
     //获取日报（分页）
-    @PostMapping("/")
-    public ResponsePage getPaper(@RequestParam(defaultValue =  "1") int currentpage,
-                                 @RequestParam(defaultValue = "10") int size, String username){
-        User user = userService.findByUsername(username);
+    @PostMapping
+    public ResponsePage getPaper(@RequestBody GetPaper getPaper){
+        User user = userService.findByUsername(getPaper.getUsername());
 
-        return dailyPaperService.getPaperByPage(currentpage, size, user.getId());
+        return dailyPaperService.getPaperByPage(getPaper.getCurrentpage(), getPaper.getSize(), user.getId());
     }
 
 
     //新增一条日报
     @PostMapping("/addpaper")
-    public ResponseData addPaper(@RequestBody DailyPaper dailyPaper, String username) {
-        User user = userService.findByUsername(username);
-        return dailyPaperService.addPaper(dailyPaper, user.getId());
+    public ResponseData addPaper(@RequestBody AddDailyPaper addDailyPaper) {
+        User user = userService.findByUsername(addDailyPaper.getUsername());
+        return dailyPaperService.addPaper(addDailyPaper.getDailyPaper(), user.getId());
     }
 
     //根据日期获取日报
