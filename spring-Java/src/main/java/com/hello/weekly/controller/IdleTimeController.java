@@ -11,13 +11,11 @@ import com.hello.weekly.pojo.User;
 import com.hello.weekly.service.IdletimeService;
 import com.hello.weekly.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 public class IdleTimeController {
 
@@ -29,9 +27,9 @@ public class IdleTimeController {
 
     @Autowired
     private UserService userService;
-
+    //http://localhost:8088/userdaily/idletime?username=admin
     @GetMapping("/userdaily/idletime")
-    public ResponseData findIdleTime(String username){
+    public ResponseData findIdleTime(@RequestParam(value = "username") String username){
 
         if (userService.findByUsername(username)!=null) {
 
@@ -56,10 +54,10 @@ public class IdleTimeController {
     }
 
     @PostMapping("/userdaily/idletime")
-    public ResponseData update(IdleTime idleTime){
-
-        int num = idletimeMapper.updateById(idleTime);
-        if (num > 0) {
+    public ResponseData update(@RequestBody  List<IdleTime> idleTimeList){
+        Boolean iS =idletimeService.saveOrUpdateBatch(idleTimeList);
+        //int num = idletimeMapper.updateById(idleTime);
+        if (iS) {
             return new ResponseData(ResponseData.success, "修改成功！");
         } else {
             return new ResponseData(ResponseData.error, "修改失败");
