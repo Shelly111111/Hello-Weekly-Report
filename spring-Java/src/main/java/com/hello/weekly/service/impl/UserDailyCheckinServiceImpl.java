@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hello.weekly.Res.ResponsePage;
 import com.hello.weekly.mapper.UserDailyCheckinMapper;
+import com.hello.weekly.pojo.DailyPaper;
 import com.hello.weekly.pojo.UserDailyCheckin;
 import com.hello.weekly.service.UserDailyCheckinService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,9 +53,11 @@ public class UserDailyCheckinServiceImpl implements UserDailyCheckinService {
     public ResponsePage getRecordByPage(Integer userId, Integer currentpage, Integer size) {
         LambdaQueryWrapper<UserDailyCheckin> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(UserDailyCheckin::getUser_id, userId);
-        double count = userDailyCheckinMapper.selectCount(wrapper);
+//        double count = userDailyCheckinMapper.selectCount(wrapper);
         Page<UserDailyCheckin> page = new Page<>(currentpage, size);
-        return new ResponsePage((long) Math.ceil(count / size), userDailyCheckinMapper.selectPage(page, wrapper).getRecords());
+        userDailyCheckinMapper.selectPage(page, wrapper);
+//        return new ResponsePage((long) Math.ceil(count / size), userDailyCheckinMapper.selectPage(page, wrapper).getRecords());
+        return new ResponsePage(page.getTotal(), page.getRecords());
     }
 
     /**
@@ -90,9 +93,11 @@ public class UserDailyCheckinServiceImpl implements UserDailyCheckinService {
     public ResponsePage getRecordByDate(Integer userId, Date start_date, Date end_date, Integer currentpage, Integer size) {
         LambdaQueryWrapper<UserDailyCheckin> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(UserDailyCheckin::getUser_id, userId).ge(UserDailyCheckin::getDate, start_date).lt(UserDailyCheckin::getDate, end_date);
-        double count = userDailyCheckinMapper.selectCount(wrapper);
+//        double count = userDailyCheckinMapper.selectCount(wrapper);
         Page<UserDailyCheckin> page = new Page<>(currentpage, size);
-        return new ResponsePage((long) Math.ceil(count / size), userDailyCheckinMapper.selectPage(page, wrapper).getRecords());
+        userDailyCheckinMapper.selectPage(page, wrapper);
+//        return new ResponsePage((long) Math.ceil(count / size),  userDailyCheckinMapper.selectPage(page, wrapper).getRecords());
+        return new ResponsePage(page.getTotal(), page.getRecords());
     }
 
     /**

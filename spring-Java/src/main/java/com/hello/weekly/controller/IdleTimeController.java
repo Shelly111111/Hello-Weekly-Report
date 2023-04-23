@@ -5,17 +5,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hello.weekly.Res.ResponseData;
 import com.hello.weekly.mapper.IdletimeMapper;
-import com.hello.weekly.mapper.UserMapper;
 import com.hello.weekly.pojo.IdleTime;
-import com.hello.weekly.pojo.User;
 import com.hello.weekly.service.IdletimeService;
 import com.hello.weekly.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-@CrossOrigin
+
 @RestController
 public class IdleTimeController {
 
