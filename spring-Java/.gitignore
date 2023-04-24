@@ -18,6 +18,8 @@ target/
 *.iws
 *.iml
 *.ipr
+web-React/node_modules
+web-React/node_modules/*
 
 ### NetBeans ###
 /nbproject/private/

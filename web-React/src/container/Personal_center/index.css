@@ -1,0 +1,42 @@
+.wrapper{
+    display: flex;
+    justify-content: space-evenly;
+    /* margin: auto 0; */
+    margin-top: 87px;
+    margin: 50px;
+}
+
+.center_h1{
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: larger;
+}
+.btn1{
+    margin-left: 320px;
+}
+.btn2{
+    margin-left: 330px
+}
+.line{
+    background:#443c3c;/*背景色为浅灰色*/
+   width:0.6px;/*设置宽高*/
+   height:450px;
+   position:relative;/*调整位置*/
+   left:20px;
+   margin: 0 70px;
+   float:left;/*让此div与前面的并排显示*/
+   text-align: center;
+}
+.ant-form{
+    flex-grow: 1;
+}
+.center_input .ant-input{
+    margin:1px;
+    width: 380px;
+}
+.ant-form-item-control-input-content{
+    max-width: 83%;
+}
+.ant-select{
+    max-width: 84%;
+}
