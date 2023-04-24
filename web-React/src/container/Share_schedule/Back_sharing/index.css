@@ -1,0 +1,59 @@
+.wrapper{
+    display: flex;
+    flex-direction: colunm;
+
+}
+.character{
+    display:flex;
+}
+h1{
+    margin:0px;
+    text-align: left;
+    font-size: larger;
+}
+.mid{
+
+    border-top: 2px solid;
+    background-color: rgb(255, 255, 255);
+}
+.bottom{
+
+    border-top: 2px solid ;
+    background-color: rgb(245, 245, 245);
+    display: flex;
+    justify-content: space-around;
+}
+.block_1{
+
+    border-top: 2px solid;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    margin: 50px 100px;
+}
+.desc{
+    margin:1px
+}
+.chuxuezhe{
+    border-right: 2px solid;
+    border-left: 2px solid;
+}
+.chuxuezhe_in{
+    margin-left: 5px;
+    margin-right:5px
+}
+.ant-pagination{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 200px;
+    margin-top: 90px;
+}
+.courses_box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    color: gray;
+}
+.ant-image{
+    flex-grow: 1;
+}

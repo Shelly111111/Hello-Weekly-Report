@@ -1,3 +1,4 @@
-前端代码请放这里
+# use
 
-项目参考：https://github.com/PanJiaChen/vue-element-admin
+`npm i`
+`npm run dev`
